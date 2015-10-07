@@ -21,19 +21,6 @@ in this document.
 
 How-To: CloudFerry for Beginners
 ================================
-**Overview**
-
-CloudFerry is a tool for resource and workload migration between
-OpenStack clouds. CloudFerry tool migrates cloud resources and
-workloads. That includes users (preserving their passwords or generating
-new ones), roles, flavors, etc... and after that it transfers virtual
-workloads as instances with their own data (instance image, root disk
-data, ephemeral drives, attached volumes) and network settings. It's
-important that you are familiar with CloudFerry before you try using it
-on any important system(s). It's pretty trivial to get a test
-environment going that you can start learning and experimenting on but
-it will take much more effort to become proficient.
-
 **System Requirements**
 -----------------------
 
@@ -43,15 +30,6 @@ it will take much more effort to become proficient.
 4.  Internet access (for git clone).
 5.  MacOS or Ubuntu Linux (or other Debian distribution) Operating
     System
-
-**Limitations**
----------------
-Neither this document nor the way that the demo is done really well
-support playing with Condensation or Evacuation.****Once you’ve
-familiarized yourself with CloudFerry’s migration functionality you
-really should set up a small pair of OpenStack clouds with enough
-compute resources to practice Condensation and Evacuation and test
-various strategies.
 
 Setting Up CloudFerry Test Environment on MacOS
 ===============================================
