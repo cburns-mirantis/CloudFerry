@@ -171,9 +171,8 @@ destination clouds need to be provided. devlab/config.ini is used to
 generate configuration.ini.
 
 1.  [vagrant@nfs ~/CloudFerry]$ ```vi devlab/config.ini```
-    **This is the file that the generate_config.sh script uses to get the IP's
-    and such correct when it generates configuration.ini for you.**
-    
+
+    This is the file is used by generate_config.sh script to generate configuration.ini for you.
 
 2.  [vagrant@nfs ~/CloudFerry]$ ```vi configuration.ini```
 
