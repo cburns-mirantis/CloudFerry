@@ -173,7 +173,6 @@ generate configuration.ini.
 1.  [vagrant@nfs ~/CloudFerry]$ ```vi devlab/config.ini```
     **This is the file that the generate_config.sh script uses to get the IP's
     and such correct when it generates configuration.ini for you.**
-    
 
 2.  [vagrant@nfs ~/CloudFerry]$ ```vi configuration.ini```
 
