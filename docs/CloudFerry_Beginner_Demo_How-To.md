@@ -31,8 +31,8 @@ How-To: CloudFerry for Beginners
 5.  MacOS or Ubuntu Linux (or other Debian distribution) Operating
     System
 
-Setting Up CloudFerry Test Environment on MacOS
-===============================================
+**Setting Up CloudFerry Test Environment on MacOS**
+-----------------------
 1.  Download and install Vagrant http://www.vagrantup.com/downloads.html
 
 2.  Download and install VirtualBox https://www.virtualbox.org/wiki/Downloads
@@ -46,9 +46,10 @@ Setting Up CloudFerry Test Environment on MacOS
 
 6.  [user@MacOS ~/git]$ ```cd ~/git/CloudFerry/devlab```
 
-7.  [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant up grizzly icehouse juno cloudferry```
+7.  [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant up grizzly icehouse juno nfs```
     
-    Open a new terminal window to watch logs:
+    Open a new terminal window to watch logs.
+    Copy SSH keys around to make your life easier.
 
 8.  [user@MacOS ~/git/CloudFerry/devlab]$ ```cat ~/.ssh/id_rsa```
 
@@ -74,47 +75,47 @@ Setting Up CloudFerry Test Environment on MacOS
     c.  [vagrant@icehouse ~/]$ ```vi ~/.ssh/authorized_keys```
         Paste in the text from step 9 above.
 
-12. [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant ssh cloudferry```
+12. [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant ssh nfs```
 
-    a.  [vagrant@cloudferry ~/]$ ```vi ~/.ssh/id_rsa```
+    a.  [vagrant@nfs ~/]$ ```vi ~/.ssh/id_rsa```
         Paste the text from step 8 above.
 
-    b.  [vagrant@cloudferry ~/]$ ```chmod 600 ~/.ssh/id_rsa```
+    b.  [vagrant@nfs ~/]$ ```chmod 600 ~/.ssh/id_rsa```
 
-    c.  [vagrant@cloudferry ~/]$ ```vi ~/.ssh/authorized_keys```
+    c.  [vagrant@nfs ~/]$ ```vi ~/.ssh/authorized_keys```
          Paste in the text from step 9 above.
         
          Now you've got Vagrant managed VM's running in Virutalbox. 
         
-         SSH to the CloudFerry VM.
-    d.  [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant ssh cloudferry```
+         SSH to the nfs VM.
+    d.  [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant ssh nfs```
 
-13. [vagrant@cloudferry ~/]$ ```sudo apt-get install virtualbox python-dev python-virtualenv libffi-dev git -y```
+13. [vagrant@nfs ~/]$ ```sudo apt-get install virtualbox python-dev python-virtualenv libffi-dev git -y```
     
     Clone the git repo on the CloudFerry server. Yes, the repo is cloned
     on both the CF VM and on your local machine. Don't let that confuse
     you.
 
-14. [vagrant@cloudferry ~/]$ ```git clone https://github.com/MirantisWorkloadMobility/CloudFerry.git```
+14. [vagrant@nfs ~/]$ ```git clone https://github.com/MirantisWorkloadMobility/CloudFerry.git```
 
-15. [vagrant@cloudferry ~/]$ ```cd CloudFerry```
+15. [vagrant@nfs ~/]$ ```cd CloudFerry```
 
-16. [vagrant@cloudferry ~/CloudFerry]$ ```git fetch```
+16. [vagrant@nfs ~/CloudFerry]$ ```git fetch```
 
-17. [vagrant@cloudferry ~/CloudFerry]$ ```git checkout -b devel origin/devel```
+17. [vagrant@nfs ~/CloudFerry]$ ```git checkout -b devel origin/devel```
     
     Now we'll finish up some prep. pip version 6.1.1 is required so
     install that now.
 
-18. [vagrant@cloudferry ~/CloudFerry]$ ```virtualenv .venv```
+18. [vagrant@nfs ~/CloudFerry]$ ```virtualenv .venv```
 
-19. [vagrant@cloudferry ~/CloudFerry]$ ```source .venv/bin/activate```
+19. [vagrant@nfs ~/CloudFerry]$ ```source .venv/bin/activate```
 
-20. [vagrant@cloudferry ~/CloudFerry]$ ```pip install pip==6.1.1```
+20. [vagrant@nfs ~/CloudFerry]$ ```pip install pip==6.1.1```
 
-21. [vagrant@cloudferry ~/CloudFerry]$ ```pip install --allow-all-external -r requirements.txt```
+21. [vagrant@nfs ~/CloudFerry]$ ```pip install --allow-all-external -r requirements.txt```
 
-22. [vagrant@cloudferry ~/CloudFerry]$ ```pip install -r test-requirements.txt```
+22. [vagrant@nfs ~/CloudFerry]$ ```pip install -r test-requirements.txt```
     
     We've got the base bits almost ready. You don't want to generate a
     configuration.ini manually if at all possible, especially while
@@ -122,33 +123,33 @@ Setting Up CloudFerry Test Environment on MacOS
     and generate your configuration.ini using the generate_config.sh
     script.
 
-23. [vagrant@cloudferry ~/CloudFerry]$ ```vi devlab/config.ini```
+23. [vagrant@nfs ~/CloudFerry]$ ```vi devlab/config.ini```
 
-24. [vagrant@cloudferry ~/CloudFerry]$ ```./devlab/provision/generate_config.sh --cloudferry-path $(pwd)```
+24. [vagrant@nfs ~/CloudFerry]$ ```./devlab/provision/generate_config.sh --cloudferry-path $(pwd)```
     
     You'll want to verify the configuration.ini file has the proper src
     and dst user and password (vagrant/vagrant is the user on the vm's)
     and the correct src and dst IP's.
 
-25. [vagrant@cloudferry ~/CloudFerry]$ ```vi configuration.ini```
+25. [vagrant@nfs ~/CloudFerry]$ ```vi configuration.ini```
 
-26. [vagrant@cloudferry ~/CloudFerry]$ ```source
+26. [vagrant@nfs ~/CloudFerry]$ ```source
     devlab/tests/openrc.example```
     
     We'll now make sure that the test environment we're working in is
     pristine and then create tenants, resources and workloads to
     migrate.
 
-27. [vagrant@cloudferry ~/CloudFerry]$ ```python devlab/tests/generate_load.py –clean```
+27. [vagrant@nfs ~/CloudFerry]$ ```python devlab/tests/generate_load.py –clean```
 
-28. [vagrant@cloudferry ~/CloudFerry]$ ```python devlab/tests/generate_load.py```
+28. [vagrant@nfs ~/CloudFerry]$ ```python devlab/tests/generate_load.py```
 
-29. [vagrant@cloudferry ~/CloudFerry]$ ```source .venv/bin/activate```
+29. [vagrant@nfs ~/CloudFerry]$ ```source .venv/bin/activate```
     
     Now you're ready to run the migration. If this is your first time
     you'll find the debug output enlightening if you read it.
 
-30. [vagrant@cloudferry ~/CloudFerry]$ ```fab
+30. [vagrant@nfs ~/CloudFerry]$ ```fab
     migrate:configuration.ini,debug=true```
 
 The steps above will have set up a grizzly cloud on a VM and an icehouse
@@ -169,12 +170,12 @@ with them. IP's, ports, passwords, usernames, etc... for source and
 destination clouds need to be provided. devlab/config.ini is used to
 generate configuration.ini.
 
-1.  [vagrant  @cloudferry ~/CloudFerry]$ ```vi devlab/config.ini```
-    **This is the file that the *generate_config.sh* uses to get the IP's
-    and such correct when it generates configuration.ini for you.
-    **
+1.  [vagrant@nfs ~/CloudFerry]$ ```vi devlab/config.ini```
+    **This is the file that the generate_config.sh script uses to get the IP's
+    and such correct when it generates configuration.ini for you.**
+    
 
-2.  [vagrant  @cloudferry ~/CloudFerry]$ ```vi configuration.ini```
+2.  [vagrant@nfs ~/CloudFerry]$ ```vi configuration.ini```
 
 **Hard Resetting Your Test Environment**
 ----------------------------------------
@@ -199,10 +200,12 @@ Proceed from step 7 above.
 **Soft Resetting Your Test Environment**
 ----------------------------------------
 
-This will reset your development CloudFerry environment so far as
+This will reset your development CloudFerry environment insofar as
 setting you up with a tenant to migrate. It will not create a new
 configuration.ini, edit your existing configuration.ini or solve almost
-any other problem. There are very few good reasons to do a soft reset.
+any other problem. There are very few good reasons to do a soft reset. 
+
+You can skip step 4 below if you simply want to add another tenant to migrate.
 
 1.  [vagrant@cloudferry ~/CloudFerry]$ ```virtualenv .venv```
 
@@ -210,13 +213,13 @@ any other problem. There are very few good reasons to do a soft reset.
 
 3.  [vagrant@cloudferry ~/CloudFerry]$ ```source devlab/tests/openrc.example```
 
-4.  [vagrant@cloudferry ~/CloudFerry]$ ```python devlab/tests/generate_load.py –clean```
+4.  [vagrant@cloudferry ~/CloudFerry]$ ```python devlab/tests/generate_load.py --clean```
 
 5.  [vagrant@cloudferry ~/CloudFerry]$ ```python devlab/tests/generate_load.py```
 
 6.  [vagrant@cloudferry ~/CloudFerry]$ ```source .venv/bin/activate```
     
-    Now would be the time when you'd edit your configuration.ini and run your migration
+    Now would be the time when you'd edit your configuration.ini, change the tenant name and run your migration
 
 7.  [vagrant@cloudferry ~/CloudFerry]$ ```vi configuration.ini```
 
