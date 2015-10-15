@@ -224,4 +224,23 @@ You can skip step 4 below if you simply want to add another tenant to migrate.
 
 8.  [vagrant@cloudferry ~/CloudFerry]$ ```fab migrate:configuration.ini,debug=true```
 
+**Changes Required to Configure On Debian/Ubuntu**
+----------------------------------------
+
+The bulk of the process is the same but the following should help.
+
+1.  [user@Ubuntu ~/]$ sudo apt-get install python-dev build-essential libssl-dev python-virtualenv libffi-dev virualbox -y
+
+2.  [user@Ubuntu ~/]$ wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb && sudo dpkg -i vagrant_1.7.2_x86_64.deb
+
+**Tips for Running CloudFerry Directly From MacOS**
+----------------------------------------
+
+MacOS doesn't use GNU sed by default and the in-place option is implemented differently. That will cause generate_config.sh to spew errors and not make the configuration.ini file. To fix the problem make the following change to generate_config.sh:
+
+1.  [user@MacOS ~/git/CloudFerry/devlab/provision]$ ```sed -i .bak 's#sed\ -i\ #sed -i .bak #g' generate_config.sh```
+
+The original generate_config.sh will be backed up as generate_config.sh.bak. 
+
+
 
