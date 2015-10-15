@@ -26,12 +26,8 @@ on a host or VM which has network connectivity to the public IP's of both the so
 and destination clouds. It's advised that this migration host be a Debian/Ubuntu
 Linux distribution when doing real migrations or any significant testing.
  
-The instructions below use the "nfs" VM as the migration host but it 
-could equally well be done directly from a Debian/Ubuntu or MacOS workstation. Because 
-MacOS uses non-GNU sed, if you want to use MacOS as your migration host (the pivot
-point so to speak) you need to make a change to one of the scripts used to 
-generate the necessary configuration file. There are tips at the bottom of this document
-which show what to change if using MacOS.
+The instructions below use the "nfs" VM as the migration host but it could equally
+well be done directly from a Debian/Ubuntu or MacOS workstation. 
 
 It is not recommended to use CentOS as your migration host. 
 
@@ -109,7 +105,7 @@ How-To: CloudFerry for Beginners
 13. [vagrant@nfs ~/]$ ```sudo apt-get install virtualbox python-dev python-virtualenv libffi-dev git -y```
     
     Clone the git repo on the CloudFerry server. Yes, the repo is cloned
-    on both the CF VM and on your local machine. Don't let that confuse
+    on both the nfs VM and on your local machine. Don't let that confuse
     you.
 
 14. [vagrant@nfs ~/]$ ```git clone https://github.com/MirantisWorkloadMobility/CloudFerry.git```
@@ -243,18 +239,7 @@ You can skip step 4 below if you simply want to add another tenant to migrate.
 **Tips For Running CloudFerry Directly From Debian/Ubuntu**
 ----------------------------------------
 
-If you are using Debian/Ubunt as your workstation rather than MacOS there are minor differences. The bulk of the process is the same but the following should help. Perform these steps instead of step 1 from the "Setting Up CloudFerry Test Environment on MacOS" instructions above.
+If you are using Debian/Ubunt as your workstation rather than MacOS there are minor differences. The bulk of the process is the same but the following should help. Perform the following step instead of step 1 from the "Setting Up CloudFerry Test Environment on MacOS" instructions above.
 
 1.  [user@Ubuntu ~/]$ ```sudo apt-get install python-dev build-essential libssl-dev python-virtualenv libffi-dev virualbox -y ; wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb && sudo dpkg -i vagrant_1.7.2_x86_64.deb```
-
-**Tips For Running CloudFerry Directly From MacOS**
-----------------------------------------
-
-MacOS doesn't use GNU sed by default and the in-place option is implemented differently. That will cause generate_config.sh to spew errors and not make the configuration.ini file. To fix the problem make the following change to generate_config.sh:
-
-1.  [user@MacOS ~/git/CloudFerry/devlab/provision]$ ```sed -i .bak 's#sed\ -i\ #sed -i .bak #g' generate_config.sh```
-
-The original generate_config.sh will be backed up as generate_config.sh.bak. 
-
-
 

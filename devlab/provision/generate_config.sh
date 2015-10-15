@@ -38,7 +38,8 @@ while read key value
 do
     value=($value)
     value=${value[1]}
-    sed -i "s|<${key}>|${value}|g" ${result_config}
+    [ "$OSTYPE" != "linux-gnu" ] && sed -i .bak "s|<${key}>|${value}|g" ${result_config} && rm -f ${result_config}.bak
+    [ "$OSTYPE" == "linux-gnu" ] && sed -i "s|<${key}>|${value}|g" ${result_config}
 done < ${CF_PATH}/devlab/config.ini
 
 echo "CloudFerry config is saved in ${result_config}"
