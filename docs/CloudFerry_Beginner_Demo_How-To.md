@@ -202,39 +202,12 @@ MacOS Laptop section above.
 
 1.  [MacOS ~/CloudFerry]$ ```cd devlab```
 
-2.  [MacOS ~/CloudFerry/devlab]$ ```vagrant destroy grizzly icehouse cloudferry```
+2.  [MacOS ~/CloudFerry/devlab]$ ```vagrant destroy grizzly icehouse juno nfs```
 
-3.  [MacOS ~/CloudFerry/devlab]$ ```vagrant up grizzly icehouse cloudferry```
+3.  [MacOS ~/CloudFerry/devlab]$ ```vagrant up grizzly icehouse juno nfs```
 
-Proceed from step 7 above.
+Proceed from step 8 above.
 
-**Soft Resetting Your Test Environment**
-----------------------------------------
-
-This will reset your development CloudFerry environment insofar as
-setting you up with a tenant to migrate. It will not create a new
-configuration.ini, edit your existing configuration.ini or solve almost
-any other problem. There are very few good reasons to do a soft reset. 
-
-You can skip step 4 below if you simply want to add another tenant to migrate.
-
-1.  [vagrant@cloudferry ~/CloudFerry]$ ```virtualenv .venv```
-
-2.  [vagrant@cloudferry ~/CloudFerry]$ ```source .venv/bin/activate```
-
-3.  [vagrant@cloudferry ~/CloudFerry]$ ```source devlab/tests/openrc.example```
-
-4.  [vagrant@cloudferry ~/CloudFerry]$ ```python devlab/tests/generate_load.py --clean```
-
-5.  [vagrant@cloudferry ~/CloudFerry]$ ```python devlab/tests/generate_load.py```
-
-6.  [vagrant@cloudferry ~/CloudFerry]$ ```source .venv/bin/activate```
-    
-    Now would be the time when you'd edit your configuration.ini, change the tenant name and run your migration
-
-7.  [vagrant@cloudferry ~/CloudFerry]$ ```vi configuration.ini```
-
-8.  [vagrant@cloudferry ~/CloudFerry]$ ```fab migrate:configuration.ini,debug=true```
 
 **Tips For Running CloudFerry Directly From Debian/Ubuntu**
 ----------------------------------------
