@@ -69,38 +69,11 @@ How-To: CloudFerry for Beginners
 
 10. [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant ssh grizzly```
 
-    a.  [vagrant@grizzly ~/]$ ```vi ~/.ssh/id_rsa```
-        Paste the text from step 8 above.
-
-    b.  [vagrant@grizzly ~/]$ ```chmod 600 ~/.ssh/id_rsa```
-
-    c.  [vagrant@grizzly ~/]$ ```vi ~/.ssh/authorized_keys```
-        Paste in the text from step 9 above.
-
 11. [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant ssh icehouse```
-
-    a.  [vagrant@icehouse ~/]$ ```vi ~/.ssh/id_rsa```
-        Paste the text from step 8 above.
-
-    b.  [vagrant@icehouse ~/]$ ```chmod 600 ~/.ssh/id_rsa```
-
-    c.  [vagrant@icehouse ~/]$ ```vi ~/.ssh/authorized_keys```
-        Paste in the text from step 9 above.
 
 12. [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant ssh nfs```
 
-    a.  [vagrant@nfs ~/]$ ```vi ~/.ssh/id_rsa```
-        Paste the text from step 8 above.
-
-    b.  [vagrant@nfs ~/]$ ```chmod 600 ~/.ssh/id_rsa```
-
-    c.  [vagrant@nfs ~/]$ ```vi ~/.ssh/authorized_keys```
-         Paste in the text from step 9 above.
-        
-         Now you've got Vagrant managed VM's running in Virutalbox. 
-        
-         SSH to the nfs VM.
-    d.  [user@MacOS ~/git/CloudFerry/devlab]$ ```vagrant ssh nfs```
+         Now you have Vagrant managed VM's running in Virutalbox. 
 
 13. [vagrant@nfs ~/]$ ```sudo apt-get install virtualbox python-dev python-virtualenv libffi-dev git -y```
     
@@ -129,9 +102,9 @@ How-To: CloudFerry for Beginners
 
 22. [vagrant@nfs ~/CloudFerry]$ ```pip install -r test-requirements.txt```
     
-    We've got the base bits almost ready. You don't want to generate a
+    We have the base bits almost ready. You do not want to generate a
     configuration.ini manually if at all possible, especially while
-    you're learning. Instead we'll auto-generate one. Edit config.ini
+    you are learning. Instead we will auto-generate one. Edit config.ini
     and generate your configuration.ini using the generate_config.sh
     script.
 
